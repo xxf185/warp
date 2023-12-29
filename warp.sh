@@ -1142,28 +1142,28 @@ ${Menu_Title}
 
 Print_Usage() {
     echo -e "
-Cloudflare WARP Installer [${shVersion}]
+Cloudflare WARP 安装程序[${shVersion}]
 
 USAGE:
     bash <(curl -fsSL https://raw.githubusercontent.com/xxf185/warp/main/warp.sh) [子命令]
 
-SUBCOMMANDS:
-    install         Install Cloudflare WARP Official Linux Client
-    uninstall       uninstall Cloudflare WARP Official Linux Client
-    restart         Restart Cloudflare WARP Official Linux Client
-    proxy           Enable WARP Client Proxy Mode (default SOCKS5 port: 40000)
-    unproxy         Disable WARP Client Proxy Mode
-    wg              Install WireGuard and related components
-    wg4             Configuration WARP IPv4 Global Network (with WireGuard), all IPv4 outbound data over the WARP network
-    wg6             Configuration WARP IPv6 Global Network (with WireGuard), all IPv6 outbound data over the WARP network
-    wgd             Configuration WARP Dual Stack Global Network (with WireGuard), all outbound data over the WARP network
-    wgx             Configuration WARP Non-Global Network (with WireGuard), set fwmark or interface IP Address to use the WARP network
-    rwg             Restart WARP WireGuard service
-    dwg             Disable WARP WireGuard service
-    status          Prints status information
-    version         Prints version information
-    help            Prints this message or the help of the given subcommand(s)
-    menu            Chinese special features menu
+子命令：
+    install         安装 Cloudflare WARP 官方 Linux 客户端
+    uninstall       卸载 Cloudflare WARP 官方 Linux 客户端      
+    restart         重启 Cloudflare WARP 官方 Linux 客户端 
+    proxy           启用 WARP 客户端代理模式（默认 SOCKS5 端口：40000）
+    unproxy         禁用 WARP 客户端代理模式
+    wg              安装 WireGuard 及相关组件
+    wg4             配置 WARP IPv4 全球网络（带WireGuard），所有 IPv4 出站数据均通过 WARP 网络
+    wg6             配置 WARP IPv6 全球网络（带WireGuard），所有 IPv6 出站数据均通过 WARP 网络
+    wgd             配置  WARP   双栈全局网络（带WireGuard），所有出站数据均通过WARP网络 
+    wgx             配置 WARP   非全局网络    （带WireGuard），设置 fwmark 或接口 IP 地址以使用 WARP 网络  
+    rwg             重启  WARP WireGuard 服务
+    dwg             禁用 WARP WireGuard 服务
+    status          打印状态信息
+    version         打印版本信息
+    help            打印此消息或给定子命令的帮助
+    menu            中文菜单
 "
 }
 
