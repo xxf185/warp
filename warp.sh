@@ -1156,14 +1156,14 @@ USAGE:
     wg              安装 WireGuard 及相关组件
     wg4             配置 WARP IPv4 全球网络（带WireGuard），所有 IPv4 出站数据均通过 WARP 网络
     wg6             配置 WARP IPv6 全球网络（带WireGuard），所有 IPv6 出站数据均通过 WARP 网络
-    wgd             配置  WARP   双栈全局网络（带WireGuard），所有出站数据均通过WARP网络 
-    wgx             配置 WARP   非全局网络    （带WireGuard），设置 fwmark 或接口 IP 地址以使用 WARP 网络  
-    rwg             重启  WARP WireGuard 服务
+    wgd             配置 WARP  双栈全局网络（带WireGuard），所有出站数据均通过WARP网络 
+    wgx             配置 WARP    非全局网络（带WireGuard），设置 fwmark 或接口 IP 地址以使用 WARP 网络  
+    rwg             重启 WARP WireGuard 服务
     dwg             禁用 WARP WireGuard 服务
-    status          打印状态信息
-    version         打印版本信息
-    help            打印此消息或给定子命令的帮助
-    menu            中文菜单
+    status          查看状态信息
+    version         查看版本信息
+    help            帮助
+    menu            菜单
 "
 }
 
