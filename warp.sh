@@ -62,17 +62,17 @@ log() {
 }
 
 if [[ $(uname -s) != Linux ]]; then
-    log ERROR "This operating system is not supported."
+    log ERROR "不支持该操作系统。"
     exit 1
 fi
 
 if [[ $(id -u) != 0 ]]; then
-    log ERROR "This script must be run as root."
+    log ERROR "该脚本必须以 root 身份运行。"
     exit 1
 fi
 
 if [[ -z $(command -v curl) ]]; then
-    log ERROR "cURL is not installed."
+    log ERROR "未安装 cURL。"
     exit 1
 fi
 
@@ -155,7 +155,7 @@ Install_WARP_Client_Debian() {
         case ${SysInfo_OS_CodeName} in
         bionic | focal | jammy) ;;
         *)
-            log ERROR "This operating system is not supported."
+            log ERROR "不支持该操作系统。"
             exit 1
             ;;
         esac
@@ -163,7 +163,7 @@ Install_WARP_Client_Debian() {
         case ${SysInfo_OS_CodeName} in
         buster | bullseye) ;;
         *)
-            log ERROR "This operating system is not supported."
+            log ERROR "不支持该操作系统。"
             exit 1
             ;;
         esac
@@ -180,7 +180,7 @@ Install_WARP_Client_CentOS() {
         rpm -ivh http://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
         yum install cloudflare-warp -y
     else
-        log ERROR "This operating system is not supported."
+        log ERROR "不支持该操作系统。"
         exit 1
     fi
 }
@@ -192,9 +192,9 @@ Check_WARP_Client() {
 
 Install_WARP_Client() {
     Print_System_Info
-    log INFO "Installing Cloudflare WARP Client..."
+    log INFO "正在安装 Cloudflare WARP 客户端..."
     if [[ ${SysInfo_Arch} != x86_64 ]]; then
-        log ERROR "This CPU architecture is not supported: ${SysInfo_Arch}"
+        log ERROR "不支持此CPU架构: ${SysInfo_Arch}"
         exit 1
     fi
     case ${SysInfo_OS_Name_lowercase} in
@@ -208,23 +208,23 @@ Install_WARP_Client() {
         if [[ ${SysInfo_RelatedOS} = *rhel* || ${SysInfo_RelatedOS} = *fedora* ]]; then
             Install_WARP_Client_CentOS
         else
-            log ERROR "This operating system is not supported."
+            log ERROR "不支持该操作系统。"
             exit 1
         fi
         ;;
     esac
     Check_WARP_Client
     if [[ ${WARP_Client_Status} = active ]]; then
-        log INFO "Cloudflare WARP Client installed successfully!"
+        log INFO "Cloudflare WARP 客户端安装成功!"
     else
-        log ERROR "warp-svc failure to run!"
+        log ERROR "warp-svc 运行失败!"
         journalctl -u warp-svc --no-pager
         exit 1
     fi
 }
 
 Uninstall_WARP_Client() {
-    log INFO "Uninstalling Cloudflare WARP Client..."
+    log INFO "卸载 Cloudflare WARP 客户端..."
     case ${SysInfo_OS_Name_lowercase} in
     *debian* | *ubuntu*)
         apt purge cloudflare-warp -y
@@ -237,7 +237,7 @@ Uninstall_WARP_Client() {
         if [[ ${SysInfo_RelatedOS} = *rhel* || ${SysInfo_RelatedOS} = *fedora* ]]; then
             yum remove cloudflare-warp -y
         else
-            log ERROR "This operating system is not supported."
+            log ERROR "不支持该操作系统."
             exit 1
         fi
         ;;
@@ -245,13 +245,13 @@ Uninstall_WARP_Client() {
 }
 
 Restart_WARP_Client() {
-    log INFO "Restarting Cloudflare WARP Client..."
+    log INFO "重新启动 Cloudflare WARP 客户端..."
     systemctl restart warp-svc
     Check_WARP_Client
     if [[ ${WARP_Client_Status} = active ]]; then
-        log INFO "Cloudflare WARP Client has been restarted."
+        log INFO "Cloudflare WARP 客户端已重新启动。"
     else
-        log ERROR "Cloudflare WARP Client failure to run!"
+        log ERROR "Cloudflare WARP 客户端运行失败!"
         journalctl -u warp-svc --no-pager
         exit 1
     fi
@@ -263,27 +263,27 @@ Init_WARP_Client() {
         Install_WARP_Client
     fi
     if [[ $(warp-cli --accept-tos account) = *Missing* ]]; then
-        log INFO "Cloudflare WARP Account Registration in progress..."
+        log INFO "Cloudflare WARP 帐户注册正在进行中..."
         warp-cli --accept-tos register
     fi
 }
 
 Connect_WARP() {
-    log INFO "Connecting to WARP..."
+    log INFO "正在连接至 WARP..."
     warp-cli --accept-tos connect
-    log INFO "Enable WARP Always-On..."
+    log INFO "启用 WARP 始终开启..."
     warp-cli --accept-tos enable-always-on
 }
 
 Disconnect_WARP() {
-    log INFO "Disable WARP Always-On..."
+    log INFO "禁用 WARP 始终开启..."
     warp-cli --accept-tos disable-always-on
-    log INFO "Disconnect from WARP..."
+    log INFO "断开与 WARP 的连接..."
     warp-cli --accept-tos disconnect
 }
 
 Set_WARP_Mode_Proxy() {
-    log INFO "Setting up WARP Proxy Mode..."
+    log INFO "设置 WARP 代理模式..."
     warp-cli --accept-tos set-mode proxy
 }
 
@@ -314,7 +314,7 @@ Uninstall_wgcf() {
 Register_WARP_Account() {
     while [[ ! -f wgcf-account.toml ]]; do
         Install_wgcf
-        log INFO "Cloudflare WARP Account registration in progress..."
+        log INFO "Cloudflare WARP 帐户注册正在进行中..."
         yes | wgcf register
         sleep 5
     done
@@ -323,7 +323,7 @@ Register_WARP_Account() {
 Generate_WGCF_Profile() {
     while [[ ! -f ${WGCF_Profile} ]]; do
         Register_WARP_Account
-        log INFO "WARP WireGuard profile (wgcf-profile.conf) generation in progress..."
+        log INFO "正在生成 WARP WireGuard 配置文件 (wgcf-profile.conf)..."
         wgcf generate
     done
     Uninstall_wgcf
@@ -364,7 +364,7 @@ Install_WireGuardTools_Debian() {
         ;;
     *)
         if [[ ${SysInfo_OS_Ver_major} -lt 10 ]]; then
-            log ERROR "This operating system is not supported."
+            log ERROR "不支持该操作系统."
             exit 1
         fi
         ;;
@@ -394,7 +394,7 @@ Install_WireGuardTools_Arch() {
 }
 
 Install_WireGuardTools() {
-    log INFO "Installing wireguard-tools..."
+    log INFO "正在安装wireguard工具..."
     case ${SysInfo_OS_Name_lowercase} in
     *debian*)
         Install_WireGuardTools_Debian
@@ -415,7 +415,7 @@ Install_WireGuardTools() {
         if [[ ${SysInfo_RelatedOS} = *rhel* || ${SysInfo_RelatedOS} = *fedora* ]]; then
             Install_WireGuardTools_CentOS
         else
-            log ERROR "This operating system is not supported."
+            log ERROR "不支持该操作系统."
             exit 1
         fi
         ;;
@@ -447,13 +447,13 @@ Install_WireGuard() {
         Install_WireGuardTools
         Install_WireGuardGo
     else
-        log INFO "WireGuard is installed and running."
+        log INFO "WireGuard 已安装并正在运行."
     fi
 }
 
 Start_WireGuard() {
     Check_WARP_Client
-    log INFO "Starting WireGuard..."
+    log INFO "正在启动 WireGuard..."
     if [[ ${WARP_Client_Status} = active ]]; then
         systemctl stop warp-svc
         systemctl enable wg-quick@${WireGuard_Interface} --now
@@ -463,9 +463,9 @@ Start_WireGuard() {
     fi
     Check_WireGuard
     if [[ ${WireGuard_Status} = active ]]; then
-        log INFO "WireGuard is running."
+        log INFO "WireGuard 正在运行。"
     else
-        log ERROR "WireGuard failure to run!"
+        log ERROR "WireGuard运行失败！"
         journalctl -u wg-quick@${WireGuard_Interface} --no-pager
         exit 1
     fi
@@ -473,7 +473,7 @@ Start_WireGuard() {
 
 Restart_WireGuard() {
     Check_WARP_Client
-    log INFO "Restarting WireGuard..."
+    log INFO "正在重新启动 WireGuard..."
     if [[ ${WARP_Client_Status} = active ]]; then
         systemctl stop warp-svc
         systemctl restart wg-quick@${WireGuard_Interface}
@@ -483,9 +483,9 @@ Restart_WireGuard() {
     fi
     Check_WireGuard
     if [[ ${WireGuard_Status} = active ]]; then
-        log INFO "WireGuard has been restarted."
+        log INFO "WireGuard 已重新启动。"
     else
-        log ERROR "WireGuard failure to run!"
+        log ERROR "WireGuard运行失败!"
         journalctl -u wg-quick@${WireGuard_Interface} --no-pager
         exit 1
     fi
@@ -512,7 +512,7 @@ Enable_WireGuard() {
 Stop_WireGuard() {
     Check_WARP_Client
     if [[ ${WireGuard_Status} = active ]]; then
-        log INFO "Stoping WireGuard..."
+        log INFO "停止 WireGuard..."
         if [[ ${WARP_Client_Status} = active ]]; then
             systemctl stop warp-svc
             systemctl stop wg-quick@${WireGuard_Interface}
@@ -522,12 +522,12 @@ Stop_WireGuard() {
         fi
         Check_WireGuard
         if [[ ${WireGuard_Status} != active ]]; then
-            log INFO "WireGuard has been stopped."
+            log INFO "WireGuard 已停止."
         else
-            log ERROR "WireGuard stop failure!"
+            log ERROR "WireGuard 停止失败！"
         fi
     else
-        log INFO "WireGuard is stopped."
+        log INFO "WireGuard 已停止."
     fi
 }
 
@@ -535,7 +535,7 @@ Disable_WireGuard() {
     Check_WARP_Client
     Check_WireGuard
     if [[ ${WireGuard_SelfStart} = enabled || ${WireGuard_Status} = active ]]; then
-        log INFO "Disabling WireGuard..."
+        log INFO "禁用 WireGuard..."
         if [[ ${WARP_Client_Status} = active ]]; then
             systemctl stop warp-svc
             systemctl disable wg-quick@${WireGuard_Interface} --now
@@ -545,12 +545,12 @@ Disable_WireGuard() {
         fi
         Check_WireGuard
         if [[ ${WireGuard_SelfStart} != enabled && ${WireGuard_Status} != active ]]; then
-            log INFO "WireGuard has been disabled."
+            log INFO "WireGuard 已被禁用。"
         else
-            log ERROR "WireGuard disable failure!"
+            log ERROR "WireGuard 禁用失败！"
         fi
     else
-        log INFO "WireGuard is disabled."
+        log INFO "WireGuard 已禁用。"
     fi
 }
 
@@ -597,27 +597,27 @@ Check_IPv6_addr() {
 Get_IP_addr() {
     Check_Network_Status
     if [[ ${IPv4Status} = on ]]; then
-        log INFO "Getting the network interface IPv4 address..."
+        log INFO "获取网络接口 IPv4 地址..."
         Check_IPv4_addr
         if [[ ${IPv4_addr} ]]; then
-            log INFO "IPv4 Address: ${IPv4_addr}"
+            log INFO "IPv4 地址: ${IPv4_addr}"
         else
-            log WARN "Network interface IPv4 address not obtained."
+            log WARN "未获取网络接口 IPv4 地址。"
         fi
     fi
     if [[ ${IPv6Status} = on ]]; then
-        log INFO "Getting the network interface IPv6 address..."
+        log INFO "获取网络接口 IPv6 地址..."
         Check_IPv6_addr
         if [[ ${IPv6_addr} ]]; then
-            log INFO "IPv6 Address: ${IPv6_addr}"
+            log INFO "IPv6 地址: ${IPv6_addr}"
         else
-            log WARN "Network interface IPv6 address not obtained."
+            log WARN "未获取网络接口 IPv6 地址。"
         fi
     fi
 }
 
 Get_WireGuard_Interface_MTU() {
-    log INFO "Getting the best MTU value for WireGuard..."
+    log INFO "获得 WireGuard 的最佳 MTU 值..."
     MTU_Preset=1500
     MTU_Increment=10
     if [[ ${IPv4Status} = off && ${IPv6Status} = on ]]; then
@@ -640,7 +640,7 @@ Get_WireGuard_Interface_MTU() {
             fi
         fi
         if [[ ${MTU_Preset} -le 1360 ]]; then
-            log WARN "MTU is set to the lowest value."
+            log WARN "MTU 设置为最低值。"
             MTU_Preset='1360'
             break
         fi
@@ -651,7 +651,7 @@ Get_WireGuard_Interface_MTU() {
 
 Generate_WireGuardProfile_Interface() {
     Get_WireGuard_Interface_MTU
-    log INFO "WireGuard profile (${WireGuard_ConfPath}) generation in progress..."
+    log INFO "WireGuard 配置文件 (${WireGuard_ConfPath}) 正在生成中..."
     cat <<EOF >${WireGuard_ConfPath}
 # Generated by xxf185/warp.sh
 # Visit https://github.com/xxf185/warp for more information
@@ -838,7 +838,7 @@ Check_WARP_WireGuard_Status() {
         ;;
     esac
     if [[ ${IPv4Status} = off && ${IPv6Status} = off ]]; then
-        log ERROR "Cloudflare WARP network anomaly, WireGuard tunnel established failed."
+        log ERROR "Cloudflare WARP 网络异常，WireGuard 隧道建立失败."
         Disable_WireGuard
         exit 1
     fi
@@ -852,7 +852,7 @@ Check_ALL_Status() {
 }
 
 Print_WARP_Client_Status() {
-    log INFO "Status check in progress..."
+    log INFO "状态检查正在进行中..."
     sleep 3
     Check_WARP_Client_Status
     Check_WARP_Proxy_Status
@@ -862,11 +862,11 @@ Print_WARP_Client_Status() {
  SOCKS5 Port\t: ${WARP_Proxy_Status_en}
  ----------------------------
 "
-    log INFO "Done."
+    log INFO "完成"
 }
 
 Print_WARP_WireGuard_Status() {
-    log INFO "Status check in progress..."
+    log INFO "状态检查正在进行中..."
     Check_WireGuard_Status
     Check_WARP_WireGuard_Status
     echo -e "
@@ -876,11 +876,11 @@ Print_WARP_WireGuard_Status() {
  IPv6 Network\t: ${WARP_IPv6_Status_en}
  ----------------------------
 "
-    log INFO "Done."
+    log INFO "完成"
 }
 
 Print_ALL_Status() {
-    log INFO "Status check in progress..."
+    log INFO "状态检查正在进行中..."
     Check_ALL_Status
     echo -e "
  ----------------------------
@@ -1009,7 +1009,7 @@ ${Menu_Title}
  ${FontColor_Green_Bold}4${FontColor_Suffix}. 卸载 WARP 官方客户端
 "
     unset MenuNumber
-    read -p "请输入选项: " MenuNumber
+    read -p "选择: " MenuNumber
     echo
     case ${MenuNumber} in
     0)
@@ -1055,7 +1055,7 @@ ${Menu_Title}
  ${FontColor_Green_Bold}3${FontColor_Suffix}. 关闭 WARP WireGuard 网络
 "
     unset MenuNumber
-    read -p "请输入选项: " MenuNumber
+    read -p "选择: " MenuNumber
     echo
     case ${MenuNumber} in
     0)
@@ -1105,7 +1105,7 @@ ${Menu_Title}
  ${FontColor_Green_Bold}8${FontColor_Suffix}. 管理 WARP WireGuard 网络
 "
     unset MenuNumber
-    read -p "请输入选项: " MenuNumber
+    read -p "选择: " MenuNumber
     echo
     case ${MenuNumber} in
     1)
@@ -1231,7 +1231,7 @@ if [ $# -ge 1 ]; then
         Start_Menu
         ;;
     *)
-        log ERROR "Invalid Parameters: $*"
+        log ERROR "无效参数: $*"
         Print_Usage
         exit 1
         ;;
