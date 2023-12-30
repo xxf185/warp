@@ -223,7 +223,7 @@ check_endpoint() {
     yellow "正在检测并设置最佳 Endpoint IP，请稍等，大约需要 1-2 分钟..."
 
     # 下载优选工具软件，感谢某匿名网友的分享的优选工具
-    wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-yxip/warp-linux-$(archAffix) -O warp >/dev/null 2>&1
+    wget https://github.com/xxf185/warp/releases/download/v1.0/warp-linux-$(archAffix) -O warp >/dev/null 2>&1
 
     # 根据 VPS 的出站 IP 情况，生成对应的优选 Endpoint IP 段列表
     check_ip
