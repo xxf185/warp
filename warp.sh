@@ -2314,40 +2314,29 @@ show_info() {
     echo "----------------------------------------------------------------------------"
 }
 
-    echo ""
-    if [[ -n $cli_port ]]; then
-        echo -e "WARP-Cli代理端口: 127.0.0.1:$cli_port  状态: $account_cli  剩余流量：$quota_cli"
-        if [[ -n $ip_cli ]]; then
-            echo -e "IP: $ip_cli  地区: $country_cli  提供商：$provider_cli"
-            echo -e "Netflix 状态：$netflix_cli  ChatGPT 状态：$chatgpt_cli"
-        fi
-    if [[ -n $wireproxy_port ]]; then
-        echo -e "WireProxy-WARP代理端口: 127.0.0.1:$wireproxy_port  状态: $account_wireproxy  剩余流量：$quota_wireproxy"
-        if [[ -n $ip_wireproxy ]]; then
-            echo -e "IP: $ip_wireproxy  地区: $country_wireproxy  提供商：$provider_wireproxy"
-            echo -e "Netflix 状态：$netflix_wireproxy  ChatGPT 状态：$chatgpt_wireproxy"
-        fi
-    else
-        echo -e "WireProxy 出站状态：${RED}未安装${PLAIN}"
-    fi
-    echo ""
-}
-
 menu() {
     clear
+    echo "#############################################################"
+    echo -e "#                ${RED}CloudFlare WARP 一键管理脚本${PLAIN}               #"
+    echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
+    echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.rest                            #"
+    echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
+    echo -e "# ${GREEN}GitLab 项目${PLAIN}: https://gitlab.com/Misaka-blog               #"
+    echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakanocchannel              #"
+    echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoc                     #"
+    echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
+    echo "#############################################################"
     echo ""
-    echo -e "${YELLOW}-------------------------CloudFlare WARP 一键管理脚本-------------------------${PLAIN}"
-    echo ""
-    echo -e " ${GREEN}1.${PLAIN} 安装 / 切换 WGCF-WARP           ${GREEN}3.${PLAIN} 安装 / 切换 WARP-GO"
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}                  ${GREEN}4.${PLAIN} ${RED}卸载 WARP-GO${PLAIN}"
-    echo ""
-    echo -e " ${GREEN}5.${PLAIN} 安装 WARP-Cli                   ${GREEN}7.${PLAIN} 安装 WireProxy-WARP"
-    echo -e " ${GREEN}6.${PLAIN} ${RED}卸载 WARP-Cli${PLAIN}                   ${GREEN}8.${PLAIN} ${RED}卸载 WireProxy-WARP${PLAIN}"
-    echo ""
-    echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口  ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
-    echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件        ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
-    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型             ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
-    echo " "
+    echo -e " ${GREEN}1.${PLAIN} 安装 / 切换 WGCF-WARP          | ${GREEN}3.${PLAIN} 安装 / 切换 WARP-GO"
+    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}                 | ${GREEN}4.${PLAIN} ${RED}卸载 WARP-GO${PLAIN}"
+    echo " -------------------------------------------------------------"
+    echo -e " ${GREEN}5.${PLAIN} 安装 WARP-Cli                  | ${GREEN}7.${PLAIN} 安装 WireProxy-WARP"
+    echo -e " ${GREEN}6.${PLAIN} ${RED}卸载 WARP-Cli${PLAIN}                  | ${GREEN}8.${PLAIN} ${RED}卸载 WireProxy-WARP${PLAIN}"
+    echo " -------------------------------------------------------------"
+    echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口 | ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
+    echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件       | ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
+    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
+    echo " -------------------------------------------------------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
     show_info
@@ -2367,7 +2356,7 @@ menu() {
         11) wireguard_profile ;;
         12) warp_traffic ;;
         13) warp_account ;;
-        14) wget -N https://raw.githubusercontent.com/xxf185/warp/main/warp.sh && bash warp.sh ;;
+        14) wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh ;;
         *) exit 1 ;;
     esac
 }
