@@ -2308,9 +2308,13 @@ show_info() {
     fi
     echo ""
     if [[ -n $wireproxy_port ]]; then
-        echo -e "WireProxy-WARP代理端口: 127.0.0.1:$wireproxy_port  状态: $account_wireproxy  剩余流量：$quota_wireproxy"
+        echo -e "WireProxy-WARP代理端口: 127.0.0.1:$wireproxy_port" 
+        echo -e "状态: $account_wireproxy 
+        echo -e "剩余流量：$quota_wireproxy"
         if [[ -n $ip_wireproxy ]]; then
-            echo -e "IP: $ip_wireproxy  地区: $country_wireproxy  提供商：$provider_wireproxy"
+            echo -e "    IP: $ip_wireproxy"    
+            echo -e "  地区: $country_wireproxy"
+            echo -e "提供商：$provider_wireproxy"
             echo -e "Netflix 状态：$netflix_wireproxy" 
             echo -e "ChatGPT 状态：$chatgpt_wireproxy"
         fi
