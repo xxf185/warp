@@ -1060,7 +1060,7 @@ install_wpgo() {
 
     # 下载 WARP-GO
     mkdir -p /opt/warp-go/
-    wget -O /opt/warp-go/warp-go https://github.com/xxf185/warp/releases/download/v1.0/warp-go-latest-linux-$(archAffix)
+    wget -O /opt/warp-go/warp-go https://github.com/xxf185/warp/releases/download/v1.0/warp-go-linux-$(archAffix)
     chmod +x /opt/warp-go/warp-go
 
     # 使用 WARP API，注册 WARP 免费账户
@@ -1288,7 +1288,7 @@ install_wireproxy() {
     fi
 
     # 下载 WireProxy
-    wget -N https://github.com/xxf185/warp/releases/download/v1.0/wireproxy-latest-linux-$(archAffix) -O /usr/local/bin/wireproxy
+    wget -N https://github.com/xxf185/warp/releases/download/v1.0/wireproxy-linux-$(archAffix) -O /usr/local/bin/wireproxy
     chmod +x /usr/local/bin/wireproxy
 
     # 询问用户 WireProxy 所使用的端口，如被占用则提示更换
