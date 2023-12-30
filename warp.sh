@@ -156,7 +156,7 @@ check_tun() {
                 return 0
             fi
         elif [[ $VIRT == "openvz" ]]; then
-            wget -N --no-check-certificate https://raw.githubusercontent.com/xxf185/warp/main/tun.sh && bash tun.sh
+            wget -N --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/tun.sh && bash tun.sh
         else
             red "检测到目前VPS未开启TUN模块, 请到后台控制面板处开启"
             exit 1
@@ -223,7 +223,7 @@ check_endpoint() {
     yellow "正在检测并设置最佳 Endpoint IP，请稍等，大约需要 1-2 分钟..."
 
     # 下载优选工具软件，感谢某匿名网友的分享的优选工具
-    wget https://github.com/xxf185/warp/releases/download/v1.0/warp-linux-$(archAffix) -O warp >/dev/null 2>&1
+    wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-yxip/warp-linux-$(archAffix) -O warp >/dev/null 2>&1
 
     # 根据 VPS 的出站 IP 情况，生成对应的优选 Endpoint IP 段列表
     check_ip
@@ -548,7 +548,7 @@ install_wgcf_dual() {
 
 # 下载 WGCF
 init_wgcf() {
-    wget --no-check-certificate https://github.com/xxf185/warp/releases/download/v1.0/wgcf-linux-$(archAffix) -O /usr/local/bin/wgcf
+    wget --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wgcf/wgcf-latest-linux-$(archAffix) -O /usr/local/bin/wgcf
     chmod +x /usr/local/bin/wgcf
 }
 
@@ -556,7 +556,7 @@ init_wgcf() {
 register_wgcf() {
     if [[ $country4 == "Russia" || $country6 == "Russia" ]]; then
         # 下载 WARP API 工具
-        wget https://github.com/xxf185/warp/releases/download/v1.0/main-linux-$(archAffix)
+        wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-api/main-linux-$(archAffix)
         chmod +x main-linux-$(archAffix)
 
         # 运行 WARP API
@@ -693,7 +693,7 @@ install_wgcf() {
 
     # 如 Linux 系统内核版本 < 5.6，或为 OpenVZ / LXC 虚拟化架构的VPS，则安装 Wireguard-GO
     if [[ $main -lt 5 ]] || [[ $minor -lt 6 ]] || [[ $VIRT =~ lxc|openvz ]]; then
-        wget -N --no-check-certificate https://github.com/xxf185/warp/releases/download/v1.0/wireguard-go-$(archAffix) -O /usr/bin/wireguard-go
+        wget -N --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wireguard-go/wireguard-go-$(archAffix) -O /usr/bin/wireguard-go
         chmod +x /usr/bin/wireguard-go
     fi
 
@@ -801,7 +801,7 @@ conf_wpgo() {
 # 利用 WARP API，注册 WARP 免费版账号并应用至 WARP-GO
 register_wpgo(){
     # 下载 WARP API 工具
-    wget https://github.com/xxf185/warp/releases/download/v1.0/main-linux-$(archAffix)
+    wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-api/main-linux-$(archAffix)
     chmod +x main-linux-$(archAffix)
 
     # 运行 WARP API
@@ -854,6 +854,12 @@ check_wpgo() {
         sleep 2
         if [[ $warp_v4 =~ on|plus ]] || [[ $warp_v6 =~ on|plus ]]; then
             green "WARP-GO 已启动成功！"
+            echo ""
+            red "下面是恰饭广告："
+            yellow "灵梦机场"
+            green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
+            yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
+            yellow "TG群：https://t.me/ReimuCloudGrup"
             echo ""
             before_showinfo && show_info
             break
@@ -1060,7 +1066,7 @@ install_wpgo() {
 
     # 下载 WARP-GO
     mkdir -p /opt/warp-go/
-    wget -O /opt/warp-go/warp-go https://github.com/xxf185/warp/releases/download/v1.0/warp-go-linux-$(archAffix)
+    wget -O /opt/warp-go/warp-go https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-go/warp-go-latest-linux-$(archAffix)
     chmod +x /opt/warp-go/warp-go
 
     # 使用 WARP API，注册 WARP 免费账户
@@ -1082,8 +1088,8 @@ install_wpgo() {
 [Unit]
 Description=warp-go service
 After=network.target
-Documentation=https://github.com/xxf185/warp
-Documentation=https://github.com/xxf185/warp
+Documentation=https://gitlab.com/Misaka-blog/warp-script
+Documentation=https://gitlab.com/ProjectWARP/warp-go
 
 [Service]
 WorkingDirectory=/opt/warp-go/
@@ -1273,6 +1279,12 @@ check_wireproxy(){
     systemctl enable wireproxy-warp >/dev/null 2>&1
     green "WireProxy-WARP 代理模式已启动成功!"
     echo ""
+    red "下面是恰饭广告："
+    yellow "灵梦机场"
+    green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
+    yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
+    yellow "TG群：https://t.me/ReimuCloudGrup"
+    echo ""
     before_showinfo && show_info
 }
 
@@ -1288,7 +1300,7 @@ install_wireproxy() {
     fi
 
     # 下载 WireProxy
-    wget -N https://github.com/xxf185/warp/releases/download/v1.0/wireproxy-linux-$(archAffix) -O /usr/local/bin/wireproxy
+    wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wireproxy/wireproxy-latest-linux-$(archAffix) -O /usr/local/bin/wireproxy
     chmod +x /usr/local/bin/wireproxy
 
     # 询问用户 WireProxy 所使用的端口，如被占用则提示更换
@@ -1608,7 +1620,7 @@ warp_traffic() {
         read -rp "请输入您的 WARP 设备 ID (36位字符): " license
     done
 
-    wget -N --no-check-certificate https://raw.githubusercontent.com/xxf185/warp/main/wp-plus.py
+    wget -N --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wp-plus.py
     sed -i "27 s/[(][^)]*[)]//g" wp-plus.py && sed -i "27 s/input/'$license'/" wp-plus.py
 
     read -rp "请输入 Screen 会话名称 (默认为wp-plus): " screenname
@@ -2225,7 +2237,7 @@ before_showinfo() {
 
     # 检测本地是否安装了 Netflix 检测脚本，如未安装则下载并安装检测脚本，感谢：https://github.com/sjlleo/netflix-verify
     if [[ ! -f /usr/local/bin/nf ]]; then
-        wget https://github.com/xxf185/warp/releases/download/v1.0/nf-linux-$(archAffix) -O /usr/local/bin/nf >/dev/null 2>&1
+        wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/netflix-verify/nf-linux-$(archAffix) -O /usr/local/bin/nf >/dev/null 2>&1
         chmod +x /usr/local/bin/nf
     fi
 
@@ -2304,8 +2316,16 @@ show_info() {
 
 menu() {
     clear
-    echo ""
-    echo -e "${YELLOW}----------------CloudFlare WARP 一键管理脚本----------------${PLAIN}"
+    echo "#############################################################"
+    echo -e "#                ${RED}CloudFlare WARP 一键管理脚本${PLAIN}               #"
+    echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
+    echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.rest                            #"
+    echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
+    echo -e "# ${GREEN}GitLab 项目${PLAIN}: https://gitlab.com/Misaka-blog               #"
+    echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakanocchannel              #"
+    echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoc                     #"
+    echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
+    echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 / 切换 WGCF-WARP          | ${GREEN}3.${PLAIN} 安装 / 切换 WARP-GO"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}                 | ${GREEN}4.${PLAIN} ${RED}卸载 WARP-GO${PLAIN}"
@@ -2315,7 +2335,7 @@ menu() {
     echo " -------------------------------------------------------------"
     echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口 | ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
     echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件       | ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
-    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 更新脚本"
+    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
     echo " -------------------------------------------------------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
@@ -2336,7 +2356,7 @@ menu() {
         11) wireguard_profile ;;
         12) warp_traffic ;;
         13) warp_account ;;
-        14) wget -N https://raw.githubusercontent.com/xxf185/warp/main/warp.sh && bash warp.sh  ;;
+        14) wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh ;;
         *) exit 1 ;;
     esac
 }
