@@ -1160,10 +1160,10 @@ SUBCOMMANDS:
     wgx             Configuration WARP Non-Global Network (with WireGuard), set fwmark or interface IP Address to use the WARP network
     rwg             Restart WARP WireGuard service
     dwg             Disable WARP WireGuard service
-    status          Prints status information
-    version         Prints version information
-    help            Prints this message or the help of the given subcommand(s)
-    menu            Chinese special features menu
+    status          状态
+    version         版本
+    help            帮助
+    menu            菜单
 "
 }
 
