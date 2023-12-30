@@ -2335,7 +2335,7 @@ menu() {
     echo " -------------------------------------------------------------"
     echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口 | ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
     echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件       | ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
-    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
+    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 更新脚本"
     echo " -------------------------------------------------------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
@@ -2356,7 +2356,7 @@ menu() {
         11) wireguard_profile ;;
         12) warp_traffic ;;
         13) warp_account ;;
-        14) wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh ;;
+        14) wget -N https://raw.githubusercontent.com/xxf185/warp/main/warp.sh ;;
         *) exit 1 ;;
     esac
 }
