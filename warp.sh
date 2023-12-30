@@ -556,7 +556,7 @@ init_wgcf() {
 register_wgcf() {
     if [[ $country4 == "Russia" || $country6 == "Russia" ]]; then
         # 下载 WARP API 工具
-        wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-api/main-linux-$(archAffix)
+        wget https://github.com/xxf185/warp/releases/download/v1.0/main-linux-$(archAffix)
         chmod +x main-linux-$(archAffix)
 
         # 运行 WARP API
