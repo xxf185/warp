@@ -2329,8 +2329,8 @@ menu() {
     echo -e " ${GREEN}13.${PLAIN} ${YELLOW}切换 WARP 账户类型${PLAIN}"      
     echo -e " ${GREEN}14.${PLAIN} ${YELLOW}更新脚本${PLAIN}"
     echo -e " ${GREEN}0.${PLAIN}  ${YELLOW}退出脚本${PLAIN}"
-    echo -e
-    echo -e "
+    echo ""
+    echo ""
     echo ""
     show_info
     echo ""
