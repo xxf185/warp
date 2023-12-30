@@ -548,7 +548,7 @@ install_wgcf_dual() {
 
 # 下载 WGCF
 init_wgcf() {
-    wget --no-check-certificate https://github.com/xxf185/wgcf/releases/download/v1.0/wgcf_2.2.20_linux-$(archAffix) -O /usr/local/bin/wgcf
+    wget --no-check-certificate https://github.com/xxf185/wgcf/releases/download/v1.0/wgcf_linux-$(archAffix) -O /usr/local/bin/wgcf
     chmod +x /usr/local/bin/wgcf
 }
 
