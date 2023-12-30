@@ -801,7 +801,7 @@ conf_wpgo() {
 # 利用 WARP API，注册 WARP 免费版账号并应用至 WARP-GO
 register_wpgo(){
     # 下载 WARP API 工具
-    wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-api/main-linux-$(archAffix)
+    wget https://github.com/xxf185/warp/releases/download/v1.0/main-linux-$(archAffix)
     chmod +x main-linux-$(archAffix)
 
     # 运行 WARP API
@@ -854,12 +854,6 @@ check_wpgo() {
         sleep 2
         if [[ $warp_v4 =~ on|plus ]] || [[ $warp_v6 =~ on|plus ]]; then
             green "WARP-GO 已启动成功！"
-            echo ""
-            red "下面是恰饭广告："
-            yellow "灵梦机场"
-            green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
-            yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
-            yellow "TG群：https://t.me/ReimuCloudGrup"
             echo ""
             before_showinfo && show_info
             break
@@ -1066,7 +1060,7 @@ install_wpgo() {
 
     # 下载 WARP-GO
     mkdir -p /opt/warp-go/
-    wget -O /opt/warp-go/warp-go https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-go/warp-go-latest-linux-$(archAffix)
+    wget -O /opt/warp-go/warp-go https://github.com/xxf185/warp/releases/download/v1.0/warp-go-latest-linux-$(archAffix)
     chmod +x /opt/warp-go/warp-go
 
     # 使用 WARP API，注册 WARP 免费账户
@@ -1088,8 +1082,8 @@ install_wpgo() {
 [Unit]
 Description=warp-go service
 After=network.target
-Documentation=https://gitlab.com/Misaka-blog/warp-script
-Documentation=https://gitlab.com/ProjectWARP/warp-go
+Documentation=https://github.com/xxf185/warp
+Documentation=https://github.com/xxf185/warp
 
 [Service]
 WorkingDirectory=/opt/warp-go/
@@ -1279,12 +1273,6 @@ check_wireproxy(){
     systemctl enable wireproxy-warp >/dev/null 2>&1
     green "WireProxy-WARP 代理模式已启动成功!"
     echo ""
-    red "下面是恰饭广告："
-    yellow "灵梦机场"
-    green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
-    yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
-    yellow "TG群：https://t.me/ReimuCloudGrup"
-    echo ""
     before_showinfo && show_info
 }
 
@@ -1300,7 +1288,7 @@ install_wireproxy() {
     fi
 
     # 下载 WireProxy
-    wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wireproxy/wireproxy-latest-linux-$(archAffix) -O /usr/local/bin/wireproxy
+    wget -N https://github.com/xxf185/warp/releases/download/v1.0/wireproxy-latest-linux-$(archAffix) -O /usr/local/bin/wireproxy
     chmod +x /usr/local/bin/wireproxy
 
     # 询问用户 WireProxy 所使用的端口，如被占用则提示更换
@@ -1620,7 +1608,7 @@ warp_traffic() {
         read -rp "请输入您的 WARP 设备 ID (36位字符): " license
     done
 
-    wget -N --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wp-plus.py
+    wget -N --no-check-certificate https://raw.githubusercontent.com/xxf185/warp/main/wp-plus.py
     sed -i "27 s/[(][^)]*[)]//g" wp-plus.py && sed -i "27 s/input/'$license'/" wp-plus.py
 
     read -rp "请输入 Screen 会话名称 (默认为wp-plus): " screenname
@@ -2237,7 +2225,7 @@ before_showinfo() {
 
     # 检测本地是否安装了 Netflix 检测脚本，如未安装则下载并安装检测脚本，感谢：https://github.com/sjlleo/netflix-verify
     if [[ ! -f /usr/local/bin/nf ]]; then
-        wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/netflix-verify/nf-linux-$(archAffix) -O /usr/local/bin/nf >/dev/null 2>&1
+        wget https://github.com/xxf185/warp/releases/download/v1.0/nf-linux-$(archAffix) -O /usr/local/bin/nf >/dev/null 2>&1
         chmod +x /usr/local/bin/nf
     fi
 
