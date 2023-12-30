@@ -2275,7 +2275,7 @@ before_showinfo() {
 }
 
 show_info() {
-    echo "----------------------------------------------------------------------------"
+    echo ""
     if [[ -n $ipv4 ]]; then
         echo -e "IPv4 地址：$ipv4  地区：$country4  设备名称：$device4"
         echo -e "提供商：$provider4  WARP 账户状态：$account4  剩余流量：$quota4"
@@ -2283,7 +2283,7 @@ show_info() {
     else
         echo -e "IPv4 出站状态：${RED}未启用${PLAIN}"
     fi
-    echo "----------------------------------------------------------------------------"
+    echo ""
     if [[ -n $ipv6 ]]; then
         echo -e "IPv6 地址：$ipv6  地区：$country6  设备名称：$device6"
         echo -e "提供商：$provider6  WARP 账户状态：$account6  剩余流量：$quota6"
@@ -2291,7 +2291,7 @@ show_info() {
     else
         echo -e "IPv6 出站状态：${RED}未启用${PLAIN}"
     fi
-    echo "----------------------------------------------------------------------------"
+    echo ""
     if [[ -n $cli_port ]]; then
         echo -e "WARP-Cli代理端口: 127.0.0.1:$cli_port  状态: $account_cli  剩余流量：$quota_cli"
         if [[ -n $ip_cli ]]; then
@@ -2301,7 +2301,7 @@ show_info() {
     else
         echo -e "WARP-Cli 出站状态：${RED}未安装${PLAIN}"
     fi
-    echo "----------------------------------------------------------------------------"
+    echo ""
     if [[ -n $wireproxy_port ]]; then
         echo -e "WireProxy-WARP代理端口: 127.0.0.1:$wireproxy_port  状态: $account_wireproxy  剩余流量：$quota_wireproxy"
         if [[ -n $ip_wireproxy ]]; then
@@ -2311,7 +2311,7 @@ show_info() {
     else
         echo -e "WireProxy 出站状态：${RED}未安装${PLAIN}"
     fi
-    echo "----------------------------------------------------------------------------"
+    echo ""
 }
 
 menu() {
@@ -2319,16 +2319,16 @@ menu() {
     echo ""
     echo -e "${YELLOW}-------------------------CloudFlare WARP 一键管理脚本-------------------------${PLAIN}"
     echo ""
-    echo -e " ${GREEN}1.${PLAIN} 安装 / 切换 WGCF-WARP          | ${GREEN}3.${PLAIN} 安装 / 切换 WARP-GO"
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}                 | ${GREEN}4.${PLAIN} ${RED}卸载 WARP-GO${PLAIN}"
-    echo " -------------------------------------------------------------"
-    echo -e " ${GREEN}5.${PLAIN} 安装 WARP-Cli                  | ${GREEN}7.${PLAIN} 安装 WireProxy-WARP"
-    echo -e " ${GREEN}6.${PLAIN} ${RED}卸载 WARP-Cli${PLAIN}                  | ${GREEN}8.${PLAIN} ${RED}卸载 WireProxy-WARP${PLAIN}"
-    echo " -------------------------------------------------------------"
-    echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口 | ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
-    echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件       | ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
-    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
-    echo " -------------------------------------------------------------"
+    echo -e " ${GREEN}1.${PLAIN} 安装 / 切换 WGCF-WARP           ${GREEN}3.${PLAIN} 安装 / 切换 WARP-GO"
+    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}                  ${GREEN}4.${PLAIN} ${RED}卸载 WARP-GO${PLAIN}"
+    echo ""
+    echo -e " ${GREEN}5.${PLAIN} 安装 WARP-Cli                   ${GREEN}7.${PLAIN} 安装 WireProxy-WARP"
+    echo -e " ${GREEN}6.${PLAIN} ${RED}卸载 WARP-Cli${PLAIN}                   ${GREEN}8.${PLAIN} ${RED}卸载 WireProxy-WARP${PLAIN}"
+    echo ""
+    echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口  ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
+    echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件        ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
+    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型             ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
+    echo " "
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
     show_info
