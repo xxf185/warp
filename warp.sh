@@ -2277,26 +2277,31 @@ before_showinfo() {
 show_info() {
     echo ""
     if [[ -n $ipv4 ]]; then
-        echo -e "IPv4 地址：$ipv4  地区：$country4  设备名称：$device4"
-        echo -e "提供商：$provider4  WARP 账户状态：$account4  剩余流量：$quota4"
-        echo -e "Netflix 状态：$netflix4  ChatGPT 状态：$chatgpt4"
+        echo -e "     IPv4地址：$ipv4               地区：$country4     设备名称：$device4"
+        echo -e "       提供商：$provider4  WARP 账户状态：$account4     剩余流量：$quota4"
+        echo -e "  Netflix状态：$netflix4" 
+        echo -e " ChatGPT 状态：$chatgpt4"
     else
         echo -e "IPv4 出站状态：${RED}未启用${PLAIN}"
     fi
     echo ""
     if [[ -n $ipv6 ]]; then
-        echo -e "IPv6 地址：$ipv6  地区：$country6  设备名称：$device6"
-        echo -e "提供商：$provider6  WARP 账户状态：$account6  剩余流量：$quota6"
-        echo -e "Netflix 状态：$netflix6  ChatGPT 状态：$chatgpt6"
+        echo -e "   IPv6地址：$ipv6                地区：$country6     设备名称：$device6"
+        echo -e "     提供商：$provider6  WARP 账户状态：$account6     剩余流量：$quota6"
+        echo -e "Netflix状态：$netflix6"
+        echo -e "ChatGPT状态：$chatgpt6"
     else
         echo -e "IPv6 出站状态：${RED}未启用${PLAIN}"
     fi
     echo ""
     if [[ -n $cli_port ]]; then
         echo -e "WARP-Cli代理端口: 127.0.0.1:$cli_port  状态: $account_cli  剩余流量：$quota_cli"
+        echo -e "
+        echo -e "
         if [[ -n $ip_cli ]]; then
             echo -e "IP: $ip_cli  地区: $country_cli  提供商：$provider_cli"
-            echo -e "Netflix 状态：$netflix_cli  ChatGPT 状态：$chatgpt_cli"
+            echo -e "Netflix状态：$netflix_cli"
+            echo -e "ChatGPT状态：$chatgpt_cli"
         fi
     else
         echo -e "WARP-Cli 出站状态：${RED}未安装${PLAIN}"
@@ -2306,7 +2311,8 @@ show_info() {
         echo -e "WireProxy-WARP代理端口: 127.0.0.1:$wireproxy_port  状态: $account_wireproxy  剩余流量：$quota_wireproxy"
         if [[ -n $ip_wireproxy ]]; then
             echo -e "IP: $ip_wireproxy  地区: $country_wireproxy  提供商：$provider_wireproxy"
-            echo -e "Netflix 状态：$netflix_wireproxy  ChatGPT 状态：$chatgpt_wireproxy"
+            echo -e "Netflix 状态：$netflix_wireproxy" 
+            echo -e "ChatGPT 状态：$chatgpt_wireproxy"
         fi
     else
         echo -e "WireProxy 出站状态：${RED}未安装${PLAIN}"
