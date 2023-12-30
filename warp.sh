@@ -622,6 +622,12 @@ check_wgcf() {
             green "WGCF-WARP 已启动成功！"
             systemctl enable wg-quick@wgcf >/dev/null 2>&1
             echo ""
+            red "下面是恰饭广告："
+            yellow "灵梦机场"
+            green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
+            yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
+            yellow "TG群：https://t.me/ReimuCloudGrup"
+            echo ""
             before_showinfo && show_info
             break
         else
@@ -2310,27 +2316,28 @@ show_info() {
 
 menu() {
     clear
+    echo "#############################################################"
+    echo -e "#                ${RED}CloudFlare WARP 一键管理脚本${PLAIN}               #"
+    echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
+    echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.rest                            #"
+    echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
+    echo -e "# ${GREEN}GitLab 项目${PLAIN}: https://gitlab.com/Misaka-blog               #"
+    echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakanocchannel              #"
+    echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoc                     #"
+    echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
+    echo "#############################################################"
     echo ""
-    echo -e "-----------------------CloudFlare WARP 一键管理脚本-----------------------"
-    echo ""
-    echo ""
-    echo -e " ${GREEN}1.${PLAIN} ${YELLOW}安装 / 切换 WGCF-WARP${PLAIN}"         
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}"   
-    echo -e " ${GREEN}3.${PLAIN} ${YELLOW}安装 / 切换 WARP-GO${PLAIN}"
-    echo -e " ${GREEN}4.${PLAIN} ${RED} 卸载 WARP-GO${PLAIN}"
-    echo -e " ${GREEN}5.${PLAIN} ${YELLOW}安装 WARP-Cli${PLAIN}"   
-    echo -e " ${GREEN}6.${PLAIN} ${RED}卸载 WARP-Cli${PLAIN}"   
-    echo -e " ${GREEN}7.${PLAIN} ${YELLOW}安装 WireProxy-WARP${PLAIN}"
-    echo -e " ${GREEN}8.${PLAIN} ${RED}卸载 WireProxy-WARP${PLAIN}"          
-    echo -e " ${GREEN}9.${PLAIN} ${YELLOW}修改 WARP-Cli / WireProxy 端口${PLAIN}"
-    echo -e " ${GREEN}10.${PLAIN} ${YELLOW}开启、关闭或重启 WARP${PLAIN}"         
-    echo -e " ${GREEN}11.${PLAIN} ${YELLOW}提取 WireGuard 配置文件${PLAIN}"                 
-    echo -e " ${GREEN}12.${PLAIN} ${YELLOW}WARP+ 账户刷流量${PLAIN}"
-    echo -e " ${GREEN}13.${PLAIN} ${YELLOW}切换 WARP 账户类型${PLAIN}"      
-    echo -e " ${GREEN}14.${PLAIN} ${YELLOW}更新脚本${PLAIN}"
-    echo -e " ${GREEN}0.${PLAIN}  ${YELLOW}退出脚本${PLAIN}"
-    echo ""
-    echo ""
+    echo -e " ${GREEN}1.${PLAIN} 安装 / 切换 WGCF-WARP          | ${GREEN}3.${PLAIN} 安装 / 切换 WARP-GO"
+    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 WGCF-WARP${PLAIN}                 | ${GREEN}4.${PLAIN} ${RED}卸载 WARP-GO${PLAIN}"
+    echo " -------------------------------------------------------------"
+    echo -e " ${GREEN}5.${PLAIN} 安装 WARP-Cli                  | ${GREEN}7.${PLAIN} 安装 WireProxy-WARP"
+    echo -e " ${GREEN}6.${PLAIN} ${RED}卸载 WARP-Cli${PLAIN}                  | ${GREEN}8.${PLAIN} ${RED}卸载 WireProxy-WARP${PLAIN}"
+    echo " -------------------------------------------------------------"
+    echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口 | ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
+    echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件       | ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
+    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
+    echo " -------------------------------------------------------------"
+    echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
     show_info
     echo ""
@@ -2349,7 +2356,7 @@ menu() {
         11) wireguard_profile ;;
         12) warp_traffic ;;
         13) warp_account ;;
-        14) wget -N https://raw.githubusercontent.com/xxf185/warp/main/warp.sh && bash warp.sh ;;
+        14) wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh ;;
         *) exit 1 ;;
     esac
 }
