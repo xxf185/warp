@@ -622,12 +622,6 @@ check_wgcf() {
             green "WGCF-WARP 已启动成功！"
             systemctl enable wg-quick@wgcf >/dev/null 2>&1
             echo ""
-            red "下面是恰饭广告："
-            yellow "灵梦机场"
-            green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
-            yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
-            yellow "TG群：https://t.me/ReimuCloudGrup"
-            echo ""
             before_showinfo && show_info
             break
         else
@@ -854,12 +848,6 @@ check_wpgo() {
         sleep 2
         if [[ $warp_v4 =~ on|plus ]] || [[ $warp_v6 =~ on|plus ]]; then
             green "WARP-GO 已启动成功！"
-            echo ""
-            red "下面是恰饭广告："
-            yellow "灵梦机场"
-            green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
-            yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
-            yellow "TG群：https://t.me/ReimuCloudGrup"
             echo ""
             before_showinfo && show_info
             break
@@ -1149,12 +1137,6 @@ check_warp_cli(){
     else
         green "WARP-Cli 代理模式已启动成功！"
         echo ""
-        red "下面是恰饭广告："
-        yellow "灵梦机场"
-        green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
-        yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
-        yellow "TG群：https://t.me/ReimuCloudGrup"
-        echo ""
         before_showinfo && show_info
     fi
 }
@@ -1278,12 +1260,6 @@ check_wireproxy(){
     sleep 5
     systemctl enable wireproxy-warp >/dev/null 2>&1
     green "WireProxy-WARP 代理模式已启动成功!"
-    echo ""
-    red "下面是恰饭广告："
-    yellow "灵梦机场"
-    green "专线节点加速、支持流媒体解锁、支持ChatGPT、晚高峰4k秒开、大多为x0.5倍节点，这一切，仅9.9元"
-    yellow "优惠尽在：https://reimu.work/auth/register?code=aKKj"
-    yellow "TG群：https://t.me/ReimuCloudGrup"
     echo ""
     before_showinfo && show_info
 }
@@ -2327,7 +2303,7 @@ menu() {
     echo " -------------------------------------------------------------"
     echo -e " ${GREEN}9.${PLAIN} 修改 WARP-Cli / WireProxy 端口 | ${GREEN}10.${PLAIN} 开启、关闭或重启 WARP"
     echo -e " ${GREEN}11.${PLAIN} 提取 WireGuard 配置文件       | ${GREEN}12.${PLAIN} WARP+ 账户刷流量"
-    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 从 GitLab 拉取最新脚本"
+    echo -e " ${GREEN}13.${PLAIN} 切换 WARP 账户类型            | ${GREEN}14.${PLAIN} 更新脚本"
     echo " -------------------------------------------------------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
