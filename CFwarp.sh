@@ -1145,7 +1145,7 @@ Print_Usage() {
 Cloudflare WARP 安装程序[${shVersion}]
 
 USAGE:
-    bash <(curl -fsSL https://raw.githubusercontent.com/xxf185/warp/main/warp.sh) [子命令]
+    bash <(curl -fsSL https://raw.githubusercontent.com/xxf185/warp/main/CFwarp.sh) [子命令]
 
 子命令:
     install         安装 Cloudflare WARP 官方 Linux 客户端
