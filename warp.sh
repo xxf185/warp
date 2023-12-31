@@ -1620,7 +1620,7 @@ warp_traffic() {
         read -rp "请输入您的 WARP 设备 ID (36位字符): " license
     done
 
-    wget -N --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wp-plus.py
+    wget -N --no-check-certificate https://raw.githubusercontent.com/xxf185/warp/main/wp-plus.py
     sed -i "27 s/[(][^)]*[)]//g" wp-plus.py && sed -i "27 s/input/'$license'/" wp-plus.py
 
     read -rp "请输入 Screen 会话名称 (默认为wp-plus): " screenname
@@ -2237,7 +2237,7 @@ before_showinfo() {
 
     # 检测本地是否安装了 Netflix 检测脚本，如未安装则下载并安装检测脚本，感谢：https://github.com/sjlleo/netflix-verify
     if [[ ! -f /usr/local/bin/nf ]]; then
-        wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/netflix-verify/nf-linux-$(archAffix) -O /usr/local/bin/nf >/dev/null 2>&1
+        wget https://github.com/xxf185/warp/releases/download/v1.0/nf-linux-$(archAffix) -O /usr/local/bin/nf >/dev/null 2>&1
         chmod +x /usr/local/bin/nf
     fi
 
