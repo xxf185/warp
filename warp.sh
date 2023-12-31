@@ -693,7 +693,7 @@ install_wgcf() {
 
     # 如 Linux 系统内核版本 < 5.6，或为 OpenVZ / LXC 虚拟化架构的VPS，则安装 Wireguard-GO
     if [[ $main -lt 5 ]] || [[ $minor -lt 6 ]] || [[ $VIRT =~ lxc|openvz ]]; then
-        wget -N --no-check-certificate https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wireguard-go/wireguard-go-$(archAffix) -O /usr/bin/wireguard-go
+        wget -N --no-check-certificate https://github.com/xxf185/warp/releases/download/v1.0/wireguard-go-$(archAffix) -O /usr/bin/wireguard-go
         chmod +x /usr/bin/wireguard-go
     fi
 
@@ -801,7 +801,7 @@ conf_wpgo() {
 # 利用 WARP API，注册 WARP 免费版账号并应用至 WARP-GO
 register_wpgo(){
     # 下载 WARP API 工具
-    wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-api/main-linux-$(archAffix)
+    wget https://github.com/xxf185/warp/releases/download/v1.0/main-linux-$(archAffix)
     chmod +x main-linux-$(archAffix)
 
     # 运行 WARP API
@@ -1066,7 +1066,7 @@ install_wpgo() {
 
     # 下载 WARP-GO
     mkdir -p /opt/warp-go/
-    wget -O /opt/warp-go/warp-go https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-go/warp-go-latest-linux-$(archAffix)
+    wget -O /opt/warp-go/warp-go https://github.com/xxf185/warp/releases/download/v1.0/warp-go-latest-linux-$(archAffix)
     chmod +x /opt/warp-go/warp-go
 
     # 使用 WARP API，注册 WARP 免费账户
@@ -1300,7 +1300,7 @@ install_wireproxy() {
     fi
 
     # 下载 WireProxy
-    wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/wireproxy/wireproxy-latest-linux-$(archAffix) -O /usr/local/bin/wireproxy
+    wget -N https://github.com/xxf185/warp/releases/download/v1.0/wireproxy-latest-linux-$(archAffix) -O /usr/local/bin/wireproxy
     chmod +x /usr/local/bin/wireproxy
 
     # 询问用户 WireProxy 所使用的端口，如被占用则提示更换
